@@ -1,0 +1,110 @@
+[
+    {
+        "street": "澄江街道",
+        "id": 1,
+        "lowSatisfaction": "-6",
+        "timeOut": "-3",
+        "prevarications": "-5",
+        "repeatingEvent":"-4",
+        "totalScore": "88"
+    },
+    {
+        "street": "云亭街道",
+        "id": 2,
+        "lowSatisfaction": "-6",
+        "timeOut": "-9",
+        "prevarications": "0",
+        "repeatingEvent":"-1",
+        "totalScore": "77"
+    },
+    {
+        "street": "璜土镇",
+        "id": 3,
+        "lowSatisfaction": "-4",
+        "timeOut": "-7",
+        "prevarications": "-5",
+        "repeatingEvent":"-2",
+        "totalScore": "85"
+    },
+    {
+        "street": "高新区",
+        "id": 4,
+        "lowSatisfaction": "-6",
+        "timeOut": "-8",
+        "prevarications": "-10",
+        "repeatingEvent":"-8",
+        "totalScore": "77"
+    },
+    {
+        "street": "夏港街道",
+        "id": 5,
+        "lowSatisfaction": "-2",
+        "timeOut": "-4",
+        "prevarications": "-6",
+        "repeatingEvent":"-2",
+        "totalScore": "76"
+    },
+    {
+        "street": "利港街道",
+        "id": 6,
+        "lowSatisfaction": "-6",
+        "timeOut": "-3",
+        "prevarications": "-9",
+        "repeatingEvent":"-5",
+        "totalScore": "86"
+    },
+    {
+        "street": "申港街道",
+        "id": 7,
+        "lowSatisfaction": "-7",
+        "timeOut": "-6",
+        "prevarications": "-7",
+        "repeatingEvent":"-4",
+        "totalScore": "88"
+    },
+    {
+        "street": "月城镇",
+        "id": 8,
+        "lowSatisfaction": "-1",
+        "timeOut": "-1",
+        "prevarications": "-6",
+        "repeatingEvent":"-9",
+        "totalScore": "90"
+    },
+    {
+        "street": "青阳镇",
+        "id": 9,
+        "lowSatisfaction": "-5",
+        "timeOut": "-2",
+        "prevarications": "-8",
+        "repeatingEvent":"-3",
+        "totalScore": "76"
+    },
+    {
+        "street": "长泾镇",
+        "id": 10,
+        "lowSatisfaction": "-3",
+        "timeOut": "-5",
+        "prevarications": "-7",
+        "repeatingEvent":"0",
+        "totalScore": "87"
+    },
+    {
+        "street": "徐霞客镇",
+        "id": 11,
+        "lowSatisfaction": "-7",
+        "timeOut": "-4",
+        "prevarications": "-3",
+        "repeatingEvent":"-5",
+        "totalScore": "83"
+    },
+    {
+        "street": "周庄镇",
+        "id": 12,
+        "lowSatisfaction": "-8",
+        "timeOut": "-7",
+        "prevarications": "-1",
+        "repeatingEvent":"-4",
+        "totalScore": "78"
+    }
+]

@@ -1,0 +1,83 @@
+[
+  {
+    "dataSource": "12345平台",
+    "id": 1,
+    "inclusionAmount": "6035",
+    "updataTime": "2023-06-29 08:53:43",
+    "accessDepartment": "城运中心",
+    "timeRange":"2023-04~2023-07",
+    "status":false
+  },
+  {
+    "dataSource": "网格化平台",
+    "id": 2,
+    "inclusionAmount": "6035",
+    "updataTime": "2023-05-22 11:54:30",
+    "accessDepartment": "城运中心",
+    "timeRange":"2023-04~2023-07",
+    "status":true
+  },
+  {
+    "dataSource": "本地舆情",
+    "id": 3,
+    "inclusionAmount": "1258",
+    "updataTime": "2023-05-15 13:43:48",
+    "accessDepartment": "暨阳论坛",
+    "timeRange":"2023-04~2023-07",
+    "status":false
+  },
+  {
+    "dataSource": "文明江阴云平台",
+    "id": 4,
+    "inclusionAmount": "5724",
+    "updataTime": "2023-05-08 07:10:27",
+    "accessDepartment": "组织部",
+    "timeRange":"2023-04~2023-07",
+    "status":true
+  },
+  {
+    "dataSource": "数字城管",
+    "id": 5,
+    "inclusionAmount": "4256",
+    "updataTime": "2023-03-10 22:38:21",
+    "accessDepartment": "城管局",
+    "timeRange":"2023-04~2023-07",
+    "status":false
+  },
+  {
+    "dataSource": "网格微信群智联平台",
+    "id": 6,
+    "inclusionAmount": "5525",
+    "updataTime": "2023-04-18 03:51:26",
+    "accessDepartment": "城运中心",
+    "timeRange":"2023-04~2023-07",
+    "status":true
+  },
+  {
+    "dataSource": "119火警",
+    "id": 7,
+    "inclusionAmount": "6918",
+    "updataTime": "2022-07-12 09:02:27",
+    "accessDepartment": "消防大队",
+    "timeRange":"2023-04~2023-07",
+    "status":false
+  },
+  {
+    "dataSource": "110双非警情",
+    "id": 8,
+    "inclusionAmount": "3363",
+    "updataTime": "2023-04-3000:04:51",
+    "accessDepartment": "公安局",
+    "timeRange":"2023-01~2023-07",
+    "status":true
+  },
+  {
+    "dataSource": "民生留言板",
+    "id": 9,
+    "inclusionAmount": "3242",
+    "updataTime": "2023-01-10 23:18:42",
+    "accessDepartment": "城运中心",
+    "timeRange":"2023-01~2023-07",
+    "status":false
+  }
+]

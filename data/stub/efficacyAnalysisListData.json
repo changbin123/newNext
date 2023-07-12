@@ -1,0 +1,98 @@
+[
+    {
+        "street": "澄江街道",
+        "id": 1,
+        "averageSatisfaction": "99",
+        "averageProcessingTime": "3.0",
+        "averageNumberPrevarications": "2.2",
+        "totalScore": "97.6"
+    },
+    {
+        "street": "云亭街道",
+        "id": 2,
+        "averageSatisfaction": "99",
+        "averageProcessingTime": "3.7",
+        "averageNumberPrevarications": "2.6",
+        "totalScore": "97.2"
+    },
+    {
+        "street": "璜土镇",
+        "id": 3,
+        "averageSatisfaction": "99",
+        "averageProcessingTime": "4.0",
+        "averageNumberPrevarications": "2.6",
+        "totalScore": "96.0"
+    },
+    {
+        "street": "高新区",
+        "id": 4,
+        "averageSatisfaction": "99",
+        "averageProcessingTime": "4.4",
+        "averageNumberPrevarications": "2.3",
+        "totalScore": "93.6"
+    },
+    {
+        "street": "夏港街道",
+        "id": 5,
+        "averageSatisfaction": "94",
+        "averageProcessingTime": "4.5",
+        "averageNumberPrevarications": "2.3",
+        "totalScore": "87.6"
+    },
+    {
+        "street": "利港街道",
+        "id": 6,
+        "averageSatisfaction": "92",
+        "averageProcessingTime": "4.5",
+        "averageNumberPrevarications": "2.7",
+        "totalScore": "82.3"
+    },
+    {
+        "street": "申港街道",
+        "id": 7,
+        "averageSatisfaction": "81",
+        "averageProcessingTime": "4.6",
+        "averageNumberPrevarications": "2.7",
+        "totalScore": "85.4"
+    },
+    {
+        "street": "月城镇",
+        "id": 8,
+        "averageSatisfaction": "88",
+        "averageProcessingTime": "4.7",
+        "averageNumberPrevarications": "2.3",
+        "totalScore": "92.3"
+    },
+    {
+        "street": "青阳镇",
+        "id": 9,
+        "averageSatisfaction": "86",
+        "averageProcessingTime": "4.7",
+        "averageNumberPrevarications": "2.5",
+        "totalScore": "88.2"
+    },
+    {
+        "street": "长泾镇",
+        "id": 10,
+        "averageSatisfaction": "84",
+        "averageProcessingTime": "4.9",
+        "averageNumberPrevarications": "3.2",
+        "totalScore": "86.9"
+    },
+    {
+        "street": "徐霞客镇",
+        "id": 11,
+        "averageSatisfaction": "81",
+        "averageProcessingTime": "4.5",
+        "averageNumberPrevarications": "3.5",
+        "totalScore": "86.7"
+    },
+    {
+        "street": "周庄镇",
+        "id": 12,
+        "averageSatisfaction": "75",
+        "averageProcessingTime": "5.1",
+        "averageNumberPrevarications": "3.5",
+        "totalScore": "84.5"
+    }
+]
