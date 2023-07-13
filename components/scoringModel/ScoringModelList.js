@@ -11,10 +11,22 @@ import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import { CSVLink, CSVDownload } from "react-csv";
 export default function ScoringModelList({ data }) {
     const [newRows, setRows] = React.useState(data);
     const chipStyle = {
         borderRadius: 5,
+    };
+    const headers = [
+        { label: "镇街", key: "street" },
+        { label: "低满意度", key: "lowSatisfaction" },
+        { label: "超时", key: "timeOut" },
+        { label: "推诿", key: "prevarications" },
+        { label: "重复事件", key: "repeatingEvent" },
+        { label: "总分", key: "totalScore" },
+      ];
+    const handleLinkClick = () => {
+        window.location.href = 'https://www.figma.com/proto/YpK1NACQco95LkXeeaePjL/%E7%A4%BE%E6%83%85%E6%B0%91%E6%84%8F?page-id=502%3A61971&type=design&node-id=505-50615&viewport=5241%2C-1674%2C0.5&t=FxcYISwKZmEmqtKN-1&scaling=min-zoom&starting-point-node-id=505%3A50615'; // 设置要跳转的链接地址
     };
     const columns = [
         {
@@ -109,6 +121,7 @@ export default function ScoringModelList({ data }) {
                         <Button
                             variant="text"
                             color="primary"
+                            onClick={handleLinkClick}
                         >
                             查看
                         </Button>
@@ -140,8 +153,8 @@ export default function ScoringModelList({ data }) {
 
                 </Stack>
                 <Stack direction="row" spacing={1} alignItems={"center"}>
-                    <Button startIcon={<SaveAltIcon />} variant="outlined">
-                        下载
+                    <Button startIcon={<SaveAltIcon />} variant="outlined" >
+                        <CSVLink data={newRows} headers={headers} >下载</CSVLink>
                     </Button>
                 </Stack>
 

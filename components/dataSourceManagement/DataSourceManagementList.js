@@ -10,10 +10,14 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import { CSVLink, CSVDownload } from "react-csv";
 export default function DataSourceManagementList({ data }) {
     const [newRows, setRows] = React.useState(data);
     const chipStyle = {
         borderRadius: 5,
+    };
+    const handleLinkClick = () => {
+        window.location.href = 'https://www.figma.com/proto/YpK1NACQco95LkXeeaePjL/%E7%A4%BE%E6%83%85%E6%B0%91%E6%84%8F?page-id=502%3A61971&type=design&node-id=505-50615&viewport=5241%2C-1674%2C0.5&t=FxcYISwKZmEmqtKN-1&scaling=min-zoom&starting-point-node-id=505%3A50615'; // 设置要跳转的链接地址
     };
     const columns = [
         {
@@ -76,6 +80,7 @@ export default function DataSourceManagementList({ data }) {
                         <Button
                             variant="text"
                             color="primary"
+                            onClick={handleLinkClick}
                         >
                             查看
                         </Button>
@@ -84,6 +89,20 @@ export default function DataSourceManagementList({ data }) {
             },
         },
     ];
+    const headers = [
+        { label: "数据来源", key: "dataSource" },
+        { label: "纳入数据量", key: "inclusionAmount" },
+        { label: "更新时间", key: "updataTime" },
+        { label: "接入部门", key: "accessDepartment" },
+        { label: "时间范围", key: "timeRange" },
+        { label: "状态", key: "status" },
+      ];
+
+    const newObj = newRows.map((item) => {
+        return { ...item, status: item.status ? "开启" : "未开启" };
+      });
+
+    
 
     return (
         <>
@@ -95,7 +114,7 @@ export default function DataSourceManagementList({ data }) {
                     <Button variant="outlined">批量导入</Button>
                 </Stack>
                 <Button startIcon={<SaveAltIcon />} variant="outlined">
-                    下载
+                  <CSVLink data={newObj} headers={headers} >下载</CSVLink>
                 </Button>
             </Box>
             <Paper sx={{ mx: 1 }} elevation={0}>

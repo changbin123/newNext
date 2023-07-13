@@ -40,6 +40,23 @@ export default function Home({ data }) {
         setValues({ ...values, [name]: newValue }); // 更新指定名称的状态的值
     };
 
+    const handleRest = ()=>{
+        console.log(1111)
+        setValues({
+            lowSatisfaction: '',
+            timeoutSetting: '',
+            shiftTimeoutSetting: '',
+            movant: '',
+            requestEvent: '',
+            claimRepetition: '',
+            demeritLimit: '',
+            lowSatisfactionSingleDeduction: '',
+            overtimeSingleDeduction: '',
+            shiftSingleDeduction: '',
+            repeatedEventSingleDeduction: ''
+          });
+    }
+
 
 
     return (
@@ -203,8 +220,11 @@ export default function Home({ data }) {
                                         sx={{ width: '100%', marginLeft: 0 }}
                                         labelPlacement="start"
                                         control={<TextField
+                                            name="demeritLimit"
                                             type="number"
                                             placeholder='30'
+                                            value={values.demeritLimit}
+                                            onChange={handleChangeNumber}
                                             inputProps={{
                                                 min: 0,
                                             }}
@@ -222,6 +242,9 @@ export default function Home({ data }) {
                                         control={<TextField
                                             type="number"
                                             placeholder='-2'
+                                            value={values.lowSatisfactionSingleDeduction}
+                                            name="lowSatisfactionSingleDeduction"
+                                            onChange={handleChangeNumber}
                                             inputProps={{
                                                 max: 0,
                                             }}
@@ -239,6 +262,9 @@ export default function Home({ data }) {
                                         control={<TextField
                                             type="number"
                                             placeholder='-3'
+                                            value={values.overtimeSingleDeduction}
+                                            name="overtimeSingleDeduction"
+                                            onChange={handleChangeNumber}
                                             inputProps={{
                                                 max: 0,
                                             }}
@@ -256,6 +282,9 @@ export default function Home({ data }) {
                                         labelPlacement="start"
                                         control={<TextField
                                             type="number"
+                                            name="shiftSingleDeduction"
+                                            value={values.shiftSingleDeduction}
+                                            onChange={handleChangeNumber}
                                             placeholder='-5'
                                             inputProps={{
                                                 max: 0,
@@ -275,6 +304,9 @@ export default function Home({ data }) {
                                         control={<TextField
                                             type="number"
                                             placeholder='-4'
+                                            value={values.repeatedEventSingleDeduction}
+                                            name="repeatedEventSingleDeduction"
+                                            onChange={handleChangeNumber}
                                             inputProps={{
                                                 max: 0,
                                             }}
@@ -295,7 +327,7 @@ export default function Home({ data }) {
                                 borderBottom: '2px solid rgba(0, 0, 0, 0.06)'
                             }}
                             >
-                                <Button sx={{ bgcolor: 'rgba(0,0,0,0.06)', color: 'black', marginRight: '10px' }} size="middle" variant="contained" >重置</Button>
+                                <Button sx={{ bgcolor: 'rgba(0,0,0,0.06)', color: 'black', marginRight: '10px' }} size="middle" variant="contained" onClick={handleRest} >重置</Button>
                                 <Button size="middle" variant="contained">查询</Button>
                             </div>
 
