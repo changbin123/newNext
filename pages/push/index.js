@@ -14,9 +14,42 @@ import Navigation from "../../components/Navigation";
 import pushData from "../../data/stub/push.json"
 import dayjs from 'dayjs';
 export default function Home({ data }) {
-  const [classification, setClassification] = React.useState('');
-  const [filter, setFilter] = React.useState('');
-  const [state, setState] = React.useState('');
+  const [alertName, setAlertName] = React.useState('');
+  const [alertId, setAlertId] = React.useState('');
+  const [alertTag, setAlertTag] = React.useState('');
+  const [receiptName, setReceiptName] = React.useState('');
+  const [department, setDepartment] = React.useState('');
+  const [receiptID, setReceiptID] = React.useState(
+ ''
+  );
+
+
+  const handleChangeAlertName = (event) => {
+    setAlertName(event.target.value);
+  };
+  const handleChangeAlertId = (event) => {
+    setAlertId(event.target.value);
+  };
+  const handleChangeAlertTag = (event) => {
+    setAlertTag(event.target.value);
+  };
+  const handleChangeReceiptName = (event)=>{
+    setReceiptName(event.target.value);
+  };
+  const handleChangeReceiptID = (event)=>{
+    setReceiptID(event.target.value);
+  };
+  const handleChangeDepartment = (event) => {
+    setDepartment(event.target.value);
+  };
+  const reset = ()=>{
+    setAlertName('')
+    setAlertId('')
+    setAlertTag('')
+    setReceiptName('')
+    setDepartment('')
+    setReceiptID('')
+  }
   return (
     <Box sx={{ flexGrow: 1 }}>
       <MenuAppBar />
@@ -24,7 +57,7 @@ export default function Home({ data }) {
         <Stack direction="row" spacing={2}>
           <Navigation />
           <Box maxWidth="1200px"> {/* hacking */}
-            <Grid item xs={12}>
+            <Grid item xs={12} marginTop={1}>
               <Box>
                 <Typography variant="h4" gutterBottom>
                   预推送事件
@@ -50,7 +83,7 @@ export default function Home({ data }) {
                   <FormControlLabel
                     sx={{ width: '90%' }}
                     label={
-                      <Typography variant="body2" sx={{ width: '30%' }}>预警名称</Typography>
+                      <Typography variant="body2" sx={{ width: '40%' }}>预警名称</Typography>
                     }
                     labelPlacement="start"
                     control={<TextField
@@ -61,7 +94,9 @@ export default function Home({ data }) {
                         '& div': { backgroundColor: 'rgba(0,0,0,0.04)' },
                         '& div:before': { borderBottom: 'none' }
                       }}
-                      label="请输入预警名称"
+                      value={alertName}
+                      onChange={handleChangeAlertName}
+                      placeholder={'请输入预警名称'}
                       size="small" />
                     }
                   />
@@ -70,7 +105,7 @@ export default function Home({ data }) {
                   <FormControlLabel
                     sx={{ width: '90%' }}
                     label={
-                      <Typography variant="body2" sx={{ width: '30%' }}>预警条目</Typography>
+                      <Typography variant="body2" sx={{ width: '40%' }}>预警条目</Typography>
                     }
                     labelPlacement="start"
                     control={<TextField
@@ -81,7 +116,9 @@ export default function Home({ data }) {
                         '& div': { backgroundColor: 'rgba(0,0,0,0.04)' },
                         '& div:before': { borderBottom: 'none' }
                       }}
-                      label="请输入预警条目"
+                      value={alertTag}
+                      onChange={handleChangeAlertTag}
+                      placeholder={'请输入预警条目'}
                       size="small" />
                     }
                   />
@@ -90,32 +127,22 @@ export default function Home({ data }) {
                   <FormControlLabel
                     sx={{ width: '90%' }}
                     label={
-                      <Typography variant="body2" sx={{ width: '30%' }}>具体分类</Typography>
-
+                      <Typography variant="body2" sx={{ width: '40%' }}>预警编号</Typography>
                     }
                     labelPlacement="start"
                     control={
-                      <FormControl sx={{ width: '100%' }}>
-                        <InputLabel sx={{ top: -5 }}>全部</InputLabel>
-                        <Select label="全部"
-                          value={classification}
-                          sx={{
-                            width: '100%',
-                            marginBottom: 1,
-                            '& fieldset': { border: 0 },
-                            '& div': { backgroundColor: 'rgba(0,0,0,0.04)' },
-                            '& div:before': { borderBottom: 'none' }
-                          }}
-                          size="small"
-                        >
-                          <MenuItem value="">
-                            <em>None</em>
-                          </MenuItem>
-                          <MenuItem value={10}>Ten</MenuItem>
-                          <MenuItem value={20}>Twenty</MenuItem>
-                          <MenuItem value={30}>Thirty</MenuItem>
-                        </Select>
-                      </FormControl>
+                      <TextField
+                        sx={{
+                          width: '100%',
+                          marginBottom: 1,
+                          '& fieldset': { border: 0 },
+                          '& div': { backgroundColor: 'rgba(0,0,0,0.04)' },
+                          '& div:before': { borderBottom: 'none' }
+                        }}
+                        value={alertId}
+                        onChange={handleChangeAlertId}
+                        placeholder={'请输入预警编号'}
+                        size="small" />
                     }
                   />
                 </Grid>
@@ -123,32 +150,21 @@ export default function Home({ data }) {
                   <FormControlLabel
                     sx={{ width: '90%' }}
                     label={
-                      <Typography variant="body2" sx={{ width: '30%' }}>筛选方式</Typography>
+                      <Typography variant="body2" sx={{ width: '40%' }}>提示单名称</Typography>
                     }
                     labelPlacement="start"
                     control={
-                      <FormControl sx={{ width: '100%' }}>
-                        <InputLabel>全部</InputLabel>
-                        <Select label="全部"
-                          value={filter}
-
-                          sx={{
-                            width: '100%',
-                            marginTop: 1,
-                            '& fieldset': { border: 0 },
-                            '& div': { backgroundColor: 'rgba(0,0,0,0.04)' },
-                            '& div:before': { borderBottom: 'none' }
-                          }}
-                          size="small"
-                        >
-                          <MenuItem value="">
-                            <em>None</em>
-                          </MenuItem>
-                          <MenuItem value={10}>Ten</MenuItem>
-                          <MenuItem value={20}>Twenty</MenuItem>
-                          <MenuItem value={30}>Thirty</MenuItem>
-                        </Select>
-                      </FormControl>
+                      <TextField
+                        sx={{
+                          width: '100%',
+                          '& fieldset': { border: 0 },
+                          '& div': { backgroundColor: 'rgba(0,0,0,0.04)' },
+                          '& div:before': { borderBottom: 'none' }
+                        }}
+                        value={receiptName}
+                        onChange={handleChangeReceiptName}
+                        placeholder={'请输入提示单名称'}
+                        size="small" />
                     }
                   />
                 </Grid>
@@ -156,47 +172,48 @@ export default function Home({ data }) {
                   <FormControlLabel
                     sx={{ width: '90%' }}
                     label={
-                      <Typography variant="body2" sx={{ width: '30%' }}>创建时间</Typography>
+                      <Typography variant="body2" sx={{ width: '40%' }}>提示单编号</Typography>
                     }
                     labelPlacement="start"
                     control={
-                      <FormControl sx={{ width: '100%' }}>
-                        <BasicDateRangePicker></BasicDateRangePicker>
-
-                      </FormControl>
+                      <TextField
+                        sx={{
+                          width: '100%',
+                          '& fieldset': { border: 0 },
+                          '& div': { backgroundColor: 'rgba(0,0,0,0.04)' },
+                          '& div:before': { borderBottom: 'none' }
+                        }}
+                        value={receiptID}
+                        onChange={handleChangeReceiptID}
+                        placeholder={'请输入提示单编号'}
+                        size="small" />
                     }
                   />
                 </Grid>
                 <Grid item xs={6} md={4}>
                   <FormControlLabel
-                    sx={{ width: '90%', justifyContent: 'space-between' }}
+                    sx={{ width: '90%' }}
                     label={
-                      <Typography variant="body2" sx={{ width: '30%' }}>状态</Typography>
+                      <Typography variant="body2" sx={{ width: '40%' }}>发送部门</Typography>
                     }
                     size="small"
                     labelPlacement="start"
                     control={
                       <FormControl sx={{ width: '100%', }}>
-                        <InputLabel >全部</InputLabel>
-                        <Select label="全部"
-                          value={state}
-
+                        <Select
+                          value={department}
                           sx={{
                             width: '100%',
-                            marginTop: 1,
                             '& fieldset': { border: 0 },
                             '& div': { backgroundColor: 'rgba(0,0,0,0.04)' },
                             '& div:before': { borderBottom: 'none' }
                           }}
-                          size="small"
-
+                          size="small" onChange={handleChangeDepartment}
                         >
-                          <MenuItem value="">
-                            <em>None</em>
-                          </MenuItem>
-                          <MenuItem value={10}>Ten</MenuItem>
-                          <MenuItem value={20}>Twenty</MenuItem>
-                          <MenuItem value={30}>Thirty</MenuItem>
+                          <MenuItem value={'department1'}>交通局</MenuItem>
+                          <MenuItem value={'department2'}>住建局</MenuItem>
+                          <MenuItem value={'department3'}>消防大队</MenuItem>
+                          <MenuItem value={'department4'}>市监局</MenuItem>
                         </Select>
                       </FormControl>
                     }
@@ -211,7 +228,6 @@ export default function Home({ data }) {
                 alignItems="center"
               >
                 <div style={{ width: '3px', height: '100%', paddingLeft: '20px', margin: 'auto', borderRight: '3px solid rgba(0, 0, 0, 0.06)' }}></div>
-
               </Grid>
               <Grid item md={1}
                 container
@@ -219,8 +235,8 @@ export default function Home({ data }) {
                 justifyContent="space-between"
                 alignItems='flex-end'
               >
-                <Button size="middle" startIcon={<SearchIcon />} variant="contained">查询</Button>
-                <Button sx={{ bgcolor: 'rgba(0,0,0,0.06)', color: 'black' }} size="middle" startIcon={<RefreshIcon />} variant="contained" >重置</Button>
+                <Button sx={{ height:'40px'}} size="middle" startIcon={<SearchIcon />} variant="contained">查询</Button>
+                <Button sx={{ bgcolor: 'rgba(0,0,0,0.06)', color: 'black', height:'40px'}} size="middle" startIcon={<RefreshIcon />} variant="contained" onClick={reset}>重置</Button>
               </Grid>
             </Grid>
             <Grid item xs={12} >
@@ -236,42 +252,5 @@ export default function Home({ data }) {
       </Container>
 
     </Box>
-  );
-}
-export function BasicDateRangePicker() {
-  const [value0, setValue0] = React.useState(
-    dayjs('2022-04-17'),
-  );
-  const [value1, setValue1] = React.useState(
-    dayjs('2022-04-17'),
-  );
-  return (
-    <div style={{
-      width: '100%',
-      borderRadius: '4px',
-      backgroundColor: 'rgba(0,0,0,0.04)',
-      borderBottom: 'none',
-    }}>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <Stack direction="row" spacing={1} alignItems={"center"}>
-          <DatePicker
-            sx={{ '&>div': { padding: '0px' }, '&>div>button': { padding: '0px', margin: 0 }, '& input': { padding: '0px', height: '40px', fontSize: '14px' }, '& fieldset': { border: 0 } }}
-            label="开始日期"
-            value={value0}
-            onchange={(newvalue) => setValue0(dayjs(newvalue))}
-            
-            />
-          <DatePicker
-            sx={{ '&>div': { padding: '0px' }, '& div>button': { padding: '0px', margin: 0 }, '& input': { padding: '0px', height: '40px', fontSize: '14px' }, '& fieldset': { border: 0 } }}
-            label="结束日期"
-            value={value1}
-
-            onchange={(newvalue) => setValue1(dayjs(newvalue))}
-          />
-        </Stack>
-
-      </LocalizationProvider>
-    </div>
-
   );
 }

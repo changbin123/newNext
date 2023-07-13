@@ -8,9 +8,11 @@ import Chip from '@mui/material/Chip';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-
+import {downloadCsv} from "../../lib/download";
+import { CSVLink, CSVDownload } from "react-csv";
 export default function PushList({data}) {
     const [newRows, setRows] = React.useState(data);
+
     const chipStyle = {
         borderRadius: 5,
       };
@@ -19,12 +21,12 @@ export default function PushList({data}) {
             field: "alertId",
             headerName: "预警编号",
             editable: true,
-            width: 100,
+            width: 120,
         },
         {
             field: "alertName",
             headerName: "预警名称",
-            width:100,
+            width:120,
             renderCell: (params) => {
                 return (
                   <Chip label={params.row.alertName}  style={chipStyle} />
@@ -34,7 +36,7 @@ export default function PushList({data}) {
         {
             field: "alertTag",
             headerName: "预警条目",
-            width: 100,
+            width: 120,
             editable: true,
             renderCell: (params) => {
                 return (
@@ -43,19 +45,29 @@ export default function PushList({data}) {
               },
         },
         {
-            field: "receiptSendSituation",
-            headerName: "提示单发送情况",
+            field: "number",
+            headerName: "次数",
             width: 100,
+        },
+        {
+          field: "receiptName",
+          headerName: "提示单名称",
+          width: 150,
+          renderCell: (params) => {
+            return (
+              <Chip label={params.row.receiptName}  style={chipStyle} />
+            );
+          },
         },
         {
             field: "receiptID",
             headerName: "提示单编号",
-            width: 100,
+            width: 120,
         },
         {
             field: "receiptSendingDepartment",
-            headerName: "提示单发送部门",
-            width: 100,
+            headerName: "发送部门",
+            width: 120,
             renderCell: (params) => {
                 return (
                   <Chip label={params.row.receiptSendingDepartment}  style={chipStyle} />
@@ -70,7 +82,7 @@ export default function PushList({data}) {
                 return (
                     <Stack direction="row" spacing={1} sx={{display: 'flex', alignItems: 'center'}}>
                         <FiberManualRecordIcon style={{ width:'0.7rem', color: params.row.receiptStatus?'green':'red',marginRight:'5px' }}/>
-                        {params.row.receiptStatus?'已启用':'未启用'}
+                        {params.row.receiptStatus?'已签收':'未签收'}
                     </Stack>
                 );
             },
@@ -78,7 +90,7 @@ export default function PushList({data}) {
         {
             field: "operations",
             headerName: "操作",
-            width: 350,
+            width: 150,
             renderCell: (params) => {
                 return (
                     <Stack width='100%' direction="row" alignItems={"center"}>
@@ -91,25 +103,6 @@ export default function PushList({data}) {
                         <Button
                             variant="text"
                             color="primary"
-                            endIcon={<KeyboardArrowDownIcon />}
-                        >
-                            专向督办
-                        </Button>
-                        <Button
-                            variant="text"
-                            color="primary"
-                        >
-                            关注
-                        </Button>
-                        <Button
-                            variant="text"
-                            color="primary"
-                        >
-                            收藏
-                        </Button>
-                        <Button
-                            variant="text"
-                            color="primary"
                         >
                             下载
                         </Button>
@@ -118,7 +111,16 @@ export default function PushList({data}) {
             },
         },
     ];
-
+  const headers = [
+    { label: "预警编号", key: "alertId" },
+    { label: "预警名称", key: "alertName" },
+    { label: "预警条目", key: "alertTag" },
+    { label: "次数", key: "number" },
+    { label: "提示单名称", key: "receiptName" },
+    { label: "提示单编号", key: "receiptID" },
+    { label: "提示单发送部门", key: "receiptSendingDepartment" },
+    { label: "签收情况", key: "receiptStatus" },
+  ];
     return (
         <>
             <Box
@@ -128,8 +130,8 @@ export default function PushList({data}) {
                     <Button variant="contained">+ 新建</Button>
                     <Button variant="outlined">批量导入</Button>
                 </Stack>
-                <Button startIcon={<SaveAltIcon/>}variant="outlined">
-                    下载
+                <Button startIcon={<SaveAltIcon/>} variant="outlined" >
+                  <CSVLink data={newRows}  headers={headers} >下载</CSVLink>
                 </Button>
             </Box>
             <Paper sx={{ mx: 1 }} elevation={0}>
