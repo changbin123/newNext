@@ -11,21 +11,37 @@ import Navigation from "../../components/Navigation";
 import scoringModelListData from "../../data/stub/scoringModelListData.json"
 import dayjs from 'dayjs';
 export default function Home({ data }) {
-    const [lowSatisfaction, setLowSatisfaction] = React.useState('');
-    const [timeoutSetting, setTimeoutSetting] = React.useState('');
-    const [state, setState] = React.useState('');
-    const handleChangeLowSatisfaction = (event) => {
+
+    const [values, setValues] = React.useState({
+        lowSatisfaction: '',
+        timeoutSetting: '',
+        shiftTimeoutSetting: '',
+        movant: '',
+        requestEvent: '',
+        claimRepetition: '',
+        demeritLimit: '',
+        lowSatisfactionSingleDeduction: '',
+        overtimeSingleDeduction: '',
+        shiftSingleDeduction: '',
+        repeatedEventSingleDeduction: ''
+    }); // 使用对象解构赋值，同时定义多个状态，并将它们存储在一个对象中
+
+    const handleChangeNumber = (event) => {
+        let name = event.target.name
         let newValue = event.target.value;
         if (newValue >= 0 && newValue <= 100) {
-            setLowSatisfaction(newValue);
+            setValues({ ...values, [name]: newValue }); // 更新指定名称的状态的值
         }
     };
-    const handleChangeTimeoutSetting = (event) => {
+
+    const handleChangeString = (event) => {
+        let name = event.target.name
         let newValue = event.target.value;
-        if (newValue >= 0 && newValue <= 100) {
-            setTimeoutSetting(newValue);
-        }
-    }
+        setValues({ ...values, [name]: newValue }); // 更新指定名称的状态的值
+    };
+
+
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <MenuAppBar />
@@ -61,17 +77,20 @@ export default function Home({ data }) {
                                         }
                                         labelPlacement="start"
                                         control={<TextField
+                                            name="lowSatisfaction"
                                             type="number"
                                             sx={{ width: '100%', marginBottom: 1, '& fieldset': { border: 0 }, '& div': { backgroundColor: 'rgba(0,0,0,0.04)' }, '& div:before': { borderBottom: 'none' } }}
                                             size="small"
-                                            value={lowSatisfaction}
-                                            onChange={handleChangeLowSatisfaction}
-                                            placeholder='0%'
-                                            inputProps={{
+                                            value={values.lowSatisfaction}
+                                            onChange={handleChangeNumber}
+                                            placeholder='0'
+                                            InputProps={{
                                                 min: 0,
                                                 max: 100,
                                                 pattern: '\\d*',
+                                                endAdornment: <InputAdornment position="end">%</InputAdornment>
                                             }}
+
                                         />
                                         }
                                     />
@@ -89,13 +108,16 @@ export default function Home({ data }) {
                                         labelPlacement="start"
                                         control={<TextField
                                             type="number"
-                                            placeholder='几个工作日'
-                                            value={timeoutSetting}
+                                            name="timeoutSetting"
+                                            placeholder='几个工作'
+                                            value={values.timeoutSetting}
+                                            onChange={handleChangeNumber}
                                             sx={{ width: '100%', marginBottom: 1, '& fieldset': { border: 0 }, '& div': { backgroundColor: 'rgba(0,0,0,0.04)' }, '& div:before': { borderBottom: 'none' } }}
                                             size="small"
-                                            onChange={handleChangeTimeoutSetting}
-                                            inputProps={{
+
+                                            InputProps={{
                                                 min: 0,
+                                                endAdornment: <InputAdornment position="end">日</InputAdornment>
                                             }}
                                         />
                                         }
@@ -113,12 +135,16 @@ export default function Home({ data }) {
                                         }
                                         labelPlacement="start"
                                         control={<TextField
+                                            name="shiftTimeoutSetting"
                                             type="number"
-                                            placeholder='几次'
+                                            placeholder='几'
+                                            value={values.shiftTimeoutSetting}
+                                            onChange={handleChangeNumber}
                                             sx={{ width: '100%', marginBottom: 1, '& fieldset': { border: 0 }, '& div': { backgroundColor: 'rgba(0,0,0,0.04)' }, '& div:before': { borderBottom: 'none' } }}
                                             size="small"
-                                            inputProps={{
+                                            InputProps={{
                                                 min: 0,
+                                                endAdornment: <InputAdornment position="end">次</InputAdornment>
                                             }}
                                         />
                                         }
@@ -133,11 +159,34 @@ export default function Home({ data }) {
                                         labelPlacement="start"
                                         control={
                                             <Stack direction="row" spacing={1} sx={{ fontSize: '12px', display: 'flex', alignItems: 'center' }}>
-                                                <TextField sx={{ width: '55%', '& fieldset': { border: 0 }, '& div': { backgroundColor: 'rgba(0,0,0,0.04)' }, '& div:before': { borderBottom: 'none' } }} placeholder="诉求人" size="small" />
-                                                <TextField sx={{ width: '65%', '& fieldset': { border: 0 }, '& div': { backgroundColor: 'rgba(0,0,0,0.04)' }, '& div:before': { borderBottom: 'none' } }} placeholder="诉求事件" size="small" />
+                                                <TextField
+                                                    sx={{
+                                                        width: '55%', '& fieldset': { border: 0 },
+                                                        '& div': { backgroundColor: 'rgba(0,0,0,0.04)' },
+                                                        '& div:before': { borderBottom: 'none' }
+                                                    }}
+                                                    name="movant"
+                                                    placeholder="诉求人"
+                                                    value={values.movant}
+                                                    onChange={handleChangeString}
+                                                    size="small" />
+                                                <TextField
+                                                    sx={{
+                                                        width: '65%', '& fieldset': { border: 0 },
+                                                        '& div': { backgroundColor: 'rgba(0,0,0,0.04)' },
+                                                        '& div:before': { borderBottom: 'none' }
+                                                    }}
+                                                    placeholder="诉求事件"
+                                                    value={values.requestEvent}
+                                                    name="requestEvent"
+                                                    onChange={handleChangeString}
+                                                    size="small" />
                                                 <div style={{ width: '48px' }}>重复</div>
                                                 <TextField
-                                                    inputProps={{
+                                                    name="claimRepetition"
+                                                    value={values.claimRepetition}
+                                                    onChange={handleChangeNumber}
+                                                    InputProps={{
                                                         min: 0,
                                                     }}
                                                     sx={{ width: '40%', '& fieldset': { border: 0 }, '& div': { backgroundColor: 'rgba(0,0,0,0.04)' }, '& div:before': { borderBottom: 'none' } }} placeholder="次数" size="small" />
@@ -236,16 +285,16 @@ export default function Home({ data }) {
                             </Grid>
                         </Grid>
                         <Grid item xs={12}>
-                            <div style={{ 
-                                paddingTop:'10px',
-                                paddingBottom:'10px',
-                                width:'100%',
+                            <div style={{
+                                paddingTop: '10px',
+                                paddingBottom: '10px',
+                                width: '100%',
                                 boxShadow: '0px -6px 6px -3px rgba(0,0,0,0.2)',
-                                display:'flex',
-                                justifyContent:'flex-end',
-                                borderBottom:'2px solid rgba(0, 0, 0, 0.06)'
-                                }}
-                                >
+                                display: 'flex',
+                                justifyContent: 'flex-end',
+                                borderBottom: '2px solid rgba(0, 0, 0, 0.06)'
+                            }}
+                            >
                                 <Button sx={{ bgcolor: 'rgba(0,0,0,0.06)', color: 'black', marginRight: '10px' }} size="middle" variant="contained" >重置</Button>
                                 <Button size="middle" variant="contained">查询</Button>
                             </div>

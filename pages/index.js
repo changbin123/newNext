@@ -12,7 +12,7 @@ export default function Home() {
       <Container fixed maxWidth="1440px">
         <Stack direction="row" spacing={2}>
           <Navigation />
-          <Grid spacing={4}>
+          <Grid container spacing={4} >
             <Grid item xs={12} md={4}>
             </Grid>
           </Grid>
