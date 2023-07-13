@@ -1,4 +1,5 @@
 import * as React from "react";
+import Link from "next/link";
 import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
@@ -8,7 +9,6 @@ import Chip from '@mui/material/Chip';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-import {downloadCsv} from "../../lib/download";
 import { CSVLink, CSVDownload } from "react-csv";
 export default function PushList({data}) {
     const [newRows, setRows] = React.useState(data);
@@ -131,7 +131,7 @@ export default function PushList({data}) {
                     <Button variant="outlined">批量导入</Button>
                 </Stack>
                 <Button startIcon={<SaveAltIcon/>} variant="outlined" >
-                  <CSVLink data={newRows}  headers={headers} >下载</CSVLink>
+                  <CSVLink data={newRows}  headers={headers} filename={"联动推送.csv"}>下载</CSVLink>
                 </Button>
             </Box>
             <Paper sx={{ mx: 1 }} elevation={0}>

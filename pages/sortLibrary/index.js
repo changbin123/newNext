@@ -14,9 +14,47 @@ import Navigation from "../../components/Navigation";
 import sortLibraryListData from "../../data/stub/sortLibraryListData.json"
 import dayjs from 'dayjs';
 export default function Home({ data }) {
-    const [classification, setClassification] = React.useState('');
-    const [filter, setFilter] = React.useState('');
-    const [state, setState] = React.useState('');
+    const [claimant, setClaimant] = React.useState('');
+    const [area, setArea] = React.useState('');
+    const [appealChannel, setAppealChannel] = React.useState('');
+    const [filterMethod, setFilterMethod] = React.useState('');
+    const [creatTime0, setCreatTime0] = React.useState(      dayjs(new Date())
+    );
+    const [creatTime1, setCreatTime1] = React.useState(      dayjs(new Date())
+    );
+    const [status, setStatus] = React.useState(
+      ''
+    );
+    const handleChangeClaimant = (event) => {
+        setClaimant(event.target.value);
+    };
+    const handleChangeArea = (event) => {
+        setArea(event.target.value);
+    };
+    const handleChangeAppealChannel = (event) => {
+        setAppealChannel(event.target.value);
+    };
+    const handleChangeFilterMethod = (event)=>{
+        setFilterMethod(event.target.value);
+    };
+    const handleChangeCreatTime0 = (event)=>{
+        setCreatTime0(event.target.value);
+    };
+    const handleChangeCreatTime1 = (event) => {
+        setCreatTime1(event.target.value);
+    };
+    const handleChangeStatus = (event) => {
+        setStatus(event.target.value);
+    };
+    const reset = ()=>{
+        setClaimant('')
+        setArea('')
+        setAppealChannel('')
+        setFilterMethod('')
+        setCreatTime0( dayjs(new Date()))
+        setCreatTime1( dayjs(new Date()))
+        setStatus('')
+    }
     const [value, setValue] = React.useState(0);
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -66,7 +104,10 @@ export default function Home({ data }) {
                                             <Typography variant="body2" sx={{ width: '30%' }}>诉求人</Typography>
                                         }
                                         labelPlacement="start"
-                                        control={<TextField sx={{ width: '100%', marginBottom: 1, '& fieldset': { border: 0 }, '& div': { backgroundColor: 'rgba(0,0,0,0.04)' }, '& div:before': { borderBottom: 'none' } }} label="请输入诉求人姓名" size="small" />
+                                        control={<TextField
+                                          value={claimant}
+                                          onChange={handleChangeClaimant}
+                                          sx={{ width: '100%', marginBottom: 1, '& fieldset': { border: 0 }, '& div': { backgroundColor: 'rgba(0,0,0,0.04)' }, '& div:before': { borderBottom: 'none' } }} label="请输入诉求人姓名" size="small" />
                                         }
                                     />
                                 </Grid>
@@ -77,7 +118,11 @@ export default function Home({ data }) {
                                             <Typography variant="body2" sx={{ width: '30%' }}>大致区域</Typography>
                                         }
                                         labelPlacement="start"
-                                        control={<TextField sx={{ width: '100%', marginBottom: 1, '& fieldset': { border: 0 }, '& div': { backgroundColor: 'rgba(0,0,0,0.04)' }, '& div:before': { borderBottom: 'none' } }} label="请输入区域名称" size="small" />
+                                        control={<TextField
+                                          value={area}
+                                          onChange={handleChangeArea}
+
+                                          sx={{ width: '100%', marginBottom: 1, '& fieldset': { border: 0 }, '& div': { backgroundColor: 'rgba(0,0,0,0.04)' }, '& div:before': { borderBottom: 'none' } }} label="请输入区域名称" size="small" />
                                         }
                                     />
                                 </Grid>
@@ -91,24 +136,27 @@ export default function Home({ data }) {
                                         labelPlacement="start"
                                         control={
                                             <FormControl sx={{ width: '100%' }}>
-                                                <InputLabel sx={{ top: -5 }}>全部</InputLabel>
-                                                <Select label="全部"
-                                                    value={classification}
-                                                    sx={{
+                                                <Select
+                                                    value={appealChannel}
+                                                        onChange={handleChangeAppealChannel}
+
+                                                        sx={{
                                                         width: '100%',
                                                         marginBottom: 1,
                                                         '& fieldset': { border: 0 },
                                                         '& div': { backgroundColor: 'rgba(0,0,0,0.04)' },
                                                         '& div:before': { borderBottom: 'none' }
                                                     }}
-                                                    size="small"
+                                                    size="small" displayEmpty
                                                 >
                                                     <MenuItem value="">
-                                                        <em>None</em>
+                                                        <em>全部</em>
                                                     </MenuItem>
-                                                    <MenuItem value={10}>Ten</MenuItem>
-                                                    <MenuItem value={20}>Twenty</MenuItem>
-                                                    <MenuItem value={30}>Thirty</MenuItem>
+                                                    <MenuItem value={1}>12345</MenuItem>
+                                                    <MenuItem value={2}>119</MenuItem>
+                                                    <MenuItem value={3}>本地舆情</MenuItem>
+                                                    <MenuItem value={4}>网格化</MenuItem>
+                                                    <MenuItem value={4}>民生留言板</MenuItem>
                                                 </Select>
                                             </FormControl>
                                         }
@@ -123,25 +171,25 @@ export default function Home({ data }) {
                                         labelPlacement="start"
                                         control={
                                             <FormControl sx={{ width: '100%' }}>
-                                                <InputLabel>全部</InputLabel>
-                                                <Select label="全部"
-                                                    value={filter}
+                                                <Select
+                                                    value={filterMethod}
+                                                        onChange={handleChangeFilterMethod}
 
-                                                    sx={{
+                                                        sx={{
                                                         width: '100%',
                                                         marginTop: 1,
                                                         '& fieldset': { border: 0 },
                                                         '& div': { backgroundColor: 'rgba(0,0,0,0.04)' },
                                                         '& div:before': { borderBottom: 'none' }
                                                     }}
-                                                    size="small"
+                                                    size="small" displayEmpty
                                                 >
                                                     <MenuItem value="">
-                                                        <em>None</em>
+                                                        <em>全部</em>
                                                     </MenuItem>
-                                                    <MenuItem value={10}>Ten</MenuItem>
-                                                    <MenuItem value={20}>Twenty</MenuItem>
-                                                    <MenuItem value={30}>Thirty</MenuItem>
+                                                    <MenuItem value={'method1'}>方式1</MenuItem>
+                                                    <MenuItem value={'method2'}>方式2</MenuItem>
+                                                    <MenuItem value={'method3'}>方式3</MenuItem>
                                                 </Select>
                                             </FormControl>
                                         }
@@ -156,8 +204,33 @@ export default function Home({ data }) {
                                         labelPlacement="start"
                                         control={
                                             <FormControl sx={{ width: '100%' }}>
-                                                <BasicDateRangePicker></BasicDateRangePicker>
+                                                <div style={{
+                                                    width: '100%',
+                                                    borderRadius: '4px',
+                                                    backgroundColor: 'rgba(0,0,0,0.04)',
+                                                    borderBottom: 'none',
+                                                }}>
+                                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                                        <Stack direction="row" spacing={1} alignItems={"center"}>
 
+                                                            <DatePicker
+                                                              sx={{ '&>div': { padding: '0px' }, '&>div>button': { padding: '0px', margin: 0 }, '& input': { padding: '0px', height: '40px', fontSize: '14px' }, '& fieldset': { border: 0 } }}
+                                                              label="开始日期"
+                                                              value={creatTime0}
+                                                              onChange={handleChangeCreatTime0}
+
+                                                            />
+                                                            <DatePicker
+                                                              sx={{ '&>div': { padding: '0px' }, '& div>button': { padding: '0px', margin: 0 }, '& input': { padding: '0px', height: '40px', fontSize: '14px' }, '& fieldset': { border: 0 } }}
+                                                              label="结束日期"
+                                                              value={creatTime1}
+                                                              onChange={handleChangeCreatTime1}
+
+                                                            />
+                                                        </Stack>
+
+                                                    </LocalizationProvider>
+                                                </div>
                                             </FormControl>
                                         }
                                     />
@@ -172,11 +245,11 @@ export default function Home({ data }) {
                                         labelPlacement="start"
                                         control={
                                             <FormControl sx={{ width: '100%', }}>
-                                                <InputLabel >全部</InputLabel>
-                                                <Select label="全部"
-                                                    value={state}
+                                                <Select
+                                                    value={status}
+                                                        onChange={handleChangeStatus}
 
-                                                    sx={{
+                                                        sx={{
                                                         width: '100%',
                                                         marginTop: 1,
                                                         '& fieldset': { border: 0 },
@@ -184,14 +257,14 @@ export default function Home({ data }) {
                                                         '& div:before': { borderBottom: 'none' }
                                                     }}
                                                     size="small"
-
+                                                    displayEmpty
                                                 >
                                                     <MenuItem value="">
-                                                        <em>None</em>
+                                                        <em>全部</em>
                                                     </MenuItem>
-                                                    <MenuItem value={10}>Ten</MenuItem>
-                                                    <MenuItem value={20}>Twenty</MenuItem>
-                                                    <MenuItem value={30}>Thirty</MenuItem>
+                                                    <MenuItem value={'status1'}>状态1</MenuItem>
+                                                    <MenuItem value={'status2'}>状态2</MenuItem>
+                                                    <MenuItem value={'status3'}>状态3</MenuItem>
                                                 </Select>
                                             </FormControl>
                                         }
@@ -215,7 +288,7 @@ export default function Home({ data }) {
                                 alignItems='flex-end'
                             >
                                 <Button size="middle" startIcon={<SearchIcon />} variant="contained">查询</Button>
-                                <Button sx={{ bgcolor: 'rgba(0,0,0,0.06)', color: 'black' }} size="middle" startIcon={<RefreshIcon />} variant="contained" >重置</Button>
+                                <Button onClick={reset} sx={{ bgcolor: 'rgba(0,0,0,0.06)', color: 'black' }} size="middle" startIcon={<RefreshIcon />} variant="contained" >重置</Button>
                             </Grid>
                         </Grid>
                         <Grid item xs={12} >

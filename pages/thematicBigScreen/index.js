@@ -8,22 +8,57 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
+import ClearIcon from '@mui/icons-material/Clear';
 import ThematicBigScreenList from "../../components/thematicBigScreen/ThematicBigScreenList";
 import Navigation from "../../components/Navigation";
 import thematicBigScreenListData from "../../data/stub/thematicBigScreenListData.json"
 export default function Home({ data }) {
-    const [multiSelectValue, setMultiSelectValue] = React.useState(['11', '22'])
-    const selectedDepartment = (e)=>{
-        console.log('e',e);
+    const [multiSelectValue, setMultiSelectValue] = React.useState([])
+    const selectRef = React.useRef(null);
+    const selectedDepartment = (event)=>{
+        const {
+            target: { value },
+        } = event;
+        setMultiSelectValue(
+          typeof value === 'string' ? value.split(',') : value,
+        );
+    }
+    const deleteDepart = (event,value)=>{
+        event.stopPropagation()
+        const _val = multiSelectValue.filter(item=>item!==value)
+        setMultiSelectValue(_val)
+    }
+    const handleInputFocus = () => {
+        selectRef.current.blur(); // set focus back to parent container
+    };
+    const [keywords,setKeywords] =  React.useState('')
+    const handleChangeKeywords= (event)=>{
+        setKeywords(event.target.value);
+    }
+    const [field,setField] =  React.useState('')
+    const handleChangeField= (event)=>{
+        setField(event.target.value);
+    }
+    const [classic,setClassic] =  React.useState('')
+    const handleChangeClassic= (event)=>{
+        setClassic(event.target.value);
+    }
+    const [number,setNumber] =  React.useState('')
+    const handleChangeNumber= (event)=>{
+        setNumber(event.target.value);
+    }
+    const [topic,setTopic] =  React.useState('')
+    const handleChangeTopic= (event)=>{
+        setTopic(event.target.value);
     }
     return (
         <Box sx={{ flexGrow: 1, }}>
             <MenuAppBar />
-            <Container fixed maxWidth="1440px">
+            <Container sx={{ flexGrow: 1 }} fixed maxWidth="1440px">
                 <Stack direction="row" spacing={2}>
                     <Navigation />
                     <Box maxWidth="1200px">
-                        <Grid item xs={12}>
+                        <Grid item xs={12} marginTop={1}>
                             <Box>
                                 <Typography variant="h5" gutterBottom>
                                     检索配置
@@ -61,6 +96,8 @@ export default function Home({ data }) {
                                             }} variant="outlined">
                                                 <OutlinedInput
                                                     type={'text'}
+                                                    value={keywords}
+                                                    onChange={handleChangeKeywords}
                                                     sx={{
                                                         width: '100%',
                                                         marginBottom: 1,
@@ -71,13 +108,12 @@ export default function Home({ data }) {
                                                     }}
                                                     endAdornment={
                                                         <InputAdornment position="end">
-                                                            <IconButton>
+                                                            <IconButton onClick={()=>setKeywords('')}>
                                                                 <HighlightOffIcon />
                                                             </IconButton>
 
                                                         </InputAdornment>
                                                     }
-                                                    label="Password"
                                                 />
                                             </FormControl>
                                         </Stack>
@@ -122,14 +158,15 @@ export default function Home({ data }) {
                                                         '& div:before': { borderBottom: 'none' }
                                                     }}
                                                     size="small"
-
+                                                    value={field}
+                                                    onChange={handleChangeField}
                                                 >
                                                     <MenuItem value="">
                                                         <em>None</em>
                                                     </MenuItem>
-                                                    <MenuItem value={10}>Ten</MenuItem>
-                                                    <MenuItem value={20}>Twenty</MenuItem>
-                                                    <MenuItem value={30}>Thirty</MenuItem>
+                                                    <MenuItem value={'field1'}>领域1</MenuItem>
+                                                    <MenuItem value={'field2'}>领域2</MenuItem>
+                                                    <MenuItem value={'field3'}>领域3</MenuItem>
                                                 </Select>
                                             </FormControl>
                                         }
@@ -152,14 +189,15 @@ export default function Home({ data }) {
                                                         '& div:before': { borderBottom: 'none' }
                                                     }}
                                                     size="small"
-
+                                                    value={classic}
+                                                    onChange={handleChangeClassic}
                                                 >
                                                     <MenuItem value="">
                                                         <em>None</em>
                                                     </MenuItem>
-                                                    <MenuItem value={10}>Ten</MenuItem>
-                                                    <MenuItem value={20}>Twenty</MenuItem>
-                                                    <MenuItem value={30}>Thirty</MenuItem>
+                                                    <MenuItem value={'classic1'}>分类1</MenuItem>
+                                                    <MenuItem value={'classic2'}>分类2</MenuItem>
+                                                    <MenuItem value={'classic3'}>分类3</MenuItem>
                                                 </Select>
                                             </FormControl>
                                         }
@@ -175,23 +213,43 @@ export default function Home({ data }) {
                                         control={
                                             <FormControl sx={{ width: '100%', }}>
                                                 <Select
-                                                    // multiple
-                                                    // value={multiSelectValue}
+                                                    multiple
+                                                    ref={selectRef}
+                                                    value={multiSelectValue}
                                                     sx={{
                                                         width: '100%',
                                                         '& fieldset': { border: 0 },
-                                                        '& div': { backgroundColor: 'rgba(0,0,0,0.04)' },
+                                                        '&>div': { backgroundColor: 'rgba(0,0,0,0.04)' },
                                                         '& div:before': { borderBottom: 'none' }
                                                     }}
-                                                    // onChange={selectedDepartment}
+                                                    onChange={selectedDepartment}
                                                     size="small"
+                                                    onFocus={handleInputFocus}
+                                                    renderValue={(selected) => (
+                                                      <Box sx={{
+                                                          '& div': { height: '100%',backgroundColor:'#fff',borderRadius:0, },
+                                                          display: 'flex',gap:0.5 ,'& button': {
+                                                              padding:0
+                                                          }}}
+                                                        >
+                                                          {selected.map((value,index) => (
+                                                            <Box  key={index} display="flex" alignItems="center">
+                                                                <Chip label={value} onMouseDown={(event) => {
+                                                                    event.stopPropagation(); // prevent event from propagating to parent
+                                                                }}/>
+                                                                <IconButton size={'small'} onMouseDown={(event)=>deleteDepart(event,value)}>
+                                                                    <ClearIcon/>
+                                                                </IconButton>
+                                                            </Box>
+                                                          ))}
+                                                      </Box>
+                                                    )}
                                                 >
-                                                     <MenuItem value="">
-                                                        <em>None</em>
-                                                    </MenuItem>
-                                                    <MenuItem value={10}>Ten</MenuItem>
-                                                    <MenuItem value={20}>Twenty</MenuItem>
-                                                    <MenuItem value={30}>Thirty</MenuItem>
+                                                    <MenuItem value={'城管局'}>城管局</MenuItem>
+                                                    <MenuItem value={'消防大队'}>消防大队</MenuItem>
+                                                    <MenuItem value={'检察院'}>检察院</MenuItem>
+                                                    <MenuItem value={'人社局'}>人社局</MenuItem>
+                                                    <MenuItem value={'政府办'}>政府办</MenuItem>
                                                 </Select>
                                             </FormControl>
                                         }
@@ -205,6 +263,8 @@ export default function Home({ data }) {
                                         sx={{ width: '100%', marginLeft: 0 }}
                                         labelPlacement="start"
                                         control={<TextField
+                                          value={number}
+                                          onChange={handleChangeNumber}
                                             sx={{ width: '100%', marginBottom: 1, '& fieldset': { border: 0 }, '& div': { backgroundColor: 'rgba(0,0,0,0.04)' }, '& div:before': { borderBottom: 'none' } }}
                                             size="small"
                                         />
@@ -221,6 +281,8 @@ export default function Home({ data }) {
                                         control={
                                             <FormControl sx={{ width: '100%', }}>
                                                 <Select
+                                                  value={topic}
+                                                  onChange={handleChangeTopic}
                                                     sx={{
                                                         width: '100%',
                                                         '& fieldset': { border: 0 },
@@ -233,9 +295,11 @@ export default function Home({ data }) {
                                                     <MenuItem value="">
                                                         <em>None</em>
                                                     </MenuItem>
-                                                    <MenuItem value={10}>Ten</MenuItem>
-                                                    <MenuItem value={20}>Twenty</MenuItem>
-                                                    <MenuItem value={30}>Thirty</MenuItem>
+                                                    <MenuItem value={10}>违章建筑专题</MenuItem>
+                                                    <MenuItem value={20}>违章停车专题</MenuItem>
+                                                    <MenuItem value={30}>消防专题</MenuItem>
+                                                    <MenuItem value={30}>公益诉讼专题</MenuItem>
+                                                    <MenuItem value={30}>文明城市专题</MenuItem>
                                                 </Select>
                                             </FormControl>
                                         }
@@ -258,48 +322,5 @@ export default function Home({ data }) {
             </Container>
 
         </Box>
-    );
-}
-import { styled } from '@mui/material/styles';
-import Input from '@mui/material/Input';
-import Chip from '@mui/material/Chip';
-
-// const rootStyled = styled('div')(({ theme }) => ({
-//     backgroundColor: '#fff',
-// }));
-
-export function MultiSelect(props) {
-    const { options, value, onChange } = props;
-    // const classes = rootStyled();
-    console.log({ options, value, onChange });
-
-    const handleDelete = (item) => {
-        const newValue = value.filter((v) => v !== item);
-        onChange(newValue);
-    };
-
-    const handleChange = (event) => {
-        onChange(event.target.value);
-    };
-
-    return (
-        <div>
-            {value.map((item) => (
-                <Chip key={item} label={item} onDelete={() => handleDelete(item)} />
-            ))}
-            <Select
-                multiple
-                value={value}
-                onChange={handleChange}
-                input={<Input />}
-
-            >
-                {options.map((option) => (
-                    <MenuItem key={option} value={option}>
-                        {option}
-                    </MenuItem>
-                ))}
-            </Select>
-        </div>
     );
 }

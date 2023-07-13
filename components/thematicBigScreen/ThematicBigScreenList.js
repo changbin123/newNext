@@ -10,6 +10,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import { CSVLink } from "react-csv";
 export default function ThematicBigScreenList({ data }) {
     const [newRows, setRows] = React.useState(data);
     const chipStyle = {
@@ -90,9 +91,11 @@ export default function ThematicBigScreenList({ data }) {
                     <Button variant="contained">+ 新建</Button>
                     <Button variant="outlined">批量导入</Button>
                 </Stack>
-                <Button startIcon={<SaveAltIcon />} variant="outlined">
-                    下载
+              <CSVLink data={newRows}  filename={"专题大屏.csv"}>
+                <Button variant="outlined">
+                  <SaveAltIcon />下载
                 </Button>
+              </CSVLink>
             </Box>
             <Paper sx={{ mx: 1 }} elevation={0}>
                 <DataGrid

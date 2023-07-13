@@ -4,48 +4,48 @@
     "id": 1,
     "mainSector": "城管局",
     "createTime": "2023-02-20 13:50:15",
-    "status": true
+    "status": 1
   },
   {
     "topicName": "违章停车专题",
     "id": 2,
     "mainSector": "城管局",
     "createTime": "2023-01-29 13:20:10",
-    "status": false
+    "status": 0
   },
   {
     "topicName": "消防专题",
     "id": 3,
     "mainSector": "消防大队",
     "createTime": "2023-01-27 19:21:23",
-    "status": false
+    "status": 0
   },
   {
     "topicName": "公益诉讼专题",
     "id": 4,
     "mainSector": "检察院",
     "createTime": "2023-01-20 22:51:34",
-    "status": false
+    "status": 1
   },
   {
     "topicName": "文明城市专题",
     "id": 5,
     "mainSector": "城管局",
     "createTime": "2023-01-11 17:21:10",
-    "status": false
+    "status": 0
   },
   {
     "topicName": "职工医疗保险专题",
     "id": 6,
     "mainSector": "人社局",
-    "createTime": "2023-01-0912:35:54",
-    "status": false
+    "createTime": "2023-01-09 12:35:54",
+    "status": 0
   },
   {
     "topicName": "政策服务专题",
     "id": 7,
     "mainSector": "政府办",
     "createTime": "2023-4-23 19:35:29",
-    "status": false
+    "status": 0
   }
 ]

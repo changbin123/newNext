@@ -9,6 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import {CSVLink} from "react-csv";
 export default function SortLibraryList({ data }) {
     const [newRows, setRows] = React.useState(data);
     const chipStyle = {
@@ -110,7 +111,14 @@ export default function SortLibraryList({ data }) {
             },
         },
     ];
-
+    const headers = [
+        { label: "诉求人", key: "claimant" },
+        { label: "历史投诉次数", key: "historicalComplaints" },
+        { label: "镇街", key: "street" },
+        { label: "主要诉求途径", key: "mainAppealChannel" },
+        { label: "最近诉求时间", key: "lastRequestTime" },
+        { label: "投诉类别标签", key: "complaintSortLabel" },
+    ];
     return (
         <>
             <Box
@@ -121,7 +129,7 @@ export default function SortLibraryList({ data }) {
                     <Button variant="outlined">批量导入</Button>
                 </Stack>
                 <Button startIcon={<SaveAltIcon />} variant="outlined">
-                    下载
+                    <CSVLink data={newRows}  headers={headers} filename={"分类库.csv"}>下载</CSVLink>
                 </Button>
             </Box>
             <Paper sx={{ mx: 1 }} elevation={0}>
