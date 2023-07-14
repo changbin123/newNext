@@ -20,7 +20,7 @@ export default function Home({ data }) {
   const [receiptName, setReceiptName] = React.useState('');
   const [department, setDepartment] = React.useState('');
   const [receiptID, setReceiptID] = React.useState(
- ''
+    ''
   );
 
 
@@ -33,16 +33,16 @@ export default function Home({ data }) {
   const handleChangeAlertTag = (event) => {
     setAlertTag(event.target.value);
   };
-  const handleChangeReceiptName = (event)=>{
+  const handleChangeReceiptName = (event) => {
     setReceiptName(event.target.value);
   };
-  const handleChangeReceiptID = (event)=>{
+  const handleChangeReceiptID = (event) => {
     setReceiptID(event.target.value);
   };
   const handleChangeDepartment = (event) => {
     setDepartment(event.target.value);
   };
-  const reset = ()=>{
+  const reset = () => {
     setAlertName('')
     setAlertId('')
     setAlertTag('')
@@ -235,8 +235,8 @@ export default function Home({ data }) {
                 justifyContent="space-between"
                 alignItems='flex-end'
               >
-                <Button sx={{ height:'40px'}} size="middle" startIcon={<SearchIcon />} variant="contained">查询</Button>
-                <Button sx={{ bgcolor: 'rgba(0,0,0,0.06)', color: 'black', height:'40px'}} size="middle" startIcon={<RefreshIcon />} variant="contained" onClick={reset}>重置</Button>
+                <Button sx={{ height: '40px' }} size="middle" startIcon={<SearchIcon />} variant="contained">查询</Button>
+                <Button sx={{ bgcolor: 'rgba(0,0,0,0.06)', color: 'black', height: '40px' }} size="middle" startIcon={<RefreshIcon />} variant="contained" onClick={reset}>重置</Button>
               </Grid>
             </Grid>
             <Grid item xs={12} >

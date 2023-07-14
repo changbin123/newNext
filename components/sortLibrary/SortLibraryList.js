@@ -9,7 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import {CSVLink} from "react-csv";
+import { CSVLink } from "react-csv";
 export default function SortLibraryList({ data }) {
     const [newRows, setRows] = React.useState(data);
     const chipStyle = {
@@ -23,10 +23,10 @@ export default function SortLibraryList({ data }) {
             width: 120,
             renderCell: (params) => {
                 return (
-                    <Stack direction="row" spacing={1} sx={{display: 'flex', alignItems: 'center'}}>
+                    <Stack direction="row" spacing={1} sx={{ display: 'flex', alignItems: 'center' }}>
                         <span>{params.row.claimant}</span>
-                        <IconButton  sx={{marginLeft:0}}>
-                            <ContentCopyIcon  sx={{marginLeft:'-10px',width:'12px'}}/>
+                        <IconButton sx={{ marginLeft: 0 }}>
+                            <ContentCopyIcon sx={{ marginLeft: '-10px', width: '12px' }} />
                         </IconButton>
                     </Stack>
                 );
@@ -38,10 +38,10 @@ export default function SortLibraryList({ data }) {
             width: 120,
             renderCell: (params) => {
                 return (
-                    <Stack direction="row" spacing={1} sx={{display: 'flex', alignItems: 'center'}}>
+                    <Stack direction="row" spacing={1} sx={{ display: 'flex', alignItems: 'center' }}>
                         <span>{params.row.historicalComplaints}</span>
-                        <IconButton  sx={{marginLeft:0}}>
-                            <ContentCopyIcon  sx={{marginLeft:'-10px',width:'12px'}}/>
+                        <IconButton sx={{ marginLeft: 0 }}>
+                            <ContentCopyIcon sx={{ marginLeft: '-10px', width: '12px' }} />
                         </IconButton>
                     </Stack>
                 );
@@ -54,10 +54,10 @@ export default function SortLibraryList({ data }) {
             editable: true,
             renderCell: (params) => {
                 return (
-                    <Stack direction="row" spacing={1} sx={{display: 'flex', alignItems: 'center'}}>
+                    <Stack direction="row" spacing={1} sx={{ display: 'flex', alignItems: 'center' }}>
                         <span>{params.row.street}</span>
-                        <IconButton  sx={{marginLeft:0}}>
-                            <ContentCopyIcon  sx={{marginLeft:'-10px',width:'12px'}}/>
+                        <IconButton sx={{ marginLeft: 0 }}>
+                            <ContentCopyIcon sx={{ marginLeft: '-10px', width: '12px' }} />
                         </IconButton>
                     </Stack>
                 );
@@ -69,10 +69,10 @@ export default function SortLibraryList({ data }) {
             width: 200,
             renderCell: (params) => {
                 return (
-                    <Stack direction="row" spacing={1} sx={{display: 'flex', alignItems: 'center'}}>
+                    <Stack direction="row" spacing={1} sx={{ display: 'flex', alignItems: 'center' }}>
                         <span>{params.row.mainAppealChannel}</span>
-                        <IconButton  sx={{marginLeft:0}}>
-                            <ContentCopyIcon  sx={{marginLeft:'-10px',width:'12px'}}/>
+                        <IconButton sx={{ marginLeft: 0 }}>
+                            <ContentCopyIcon sx={{ marginLeft: '-10px', width: '12px' }} />
                         </IconButton>
                     </Stack>
                 );
@@ -129,7 +129,7 @@ export default function SortLibraryList({ data }) {
                     <Button variant="outlined">批量导入</Button>
                 </Stack>
                 <Button startIcon={<SaveAltIcon />} variant="outlined">
-                    <CSVLink data={newRows}  headers={headers} filename={"分类库.csv"}>下载</CSVLink>
+                    <CSVLink data={newRows} headers={headers} filename={"分类库.csv"}>下载</CSVLink>
                 </Button>
             </Box>
             <Paper sx={{ mx: 1 }} elevation={0}>

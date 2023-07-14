@@ -2,7 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import MenuAppBar from "../../components/MenuAppBar";
-import { Stack, Container, Typography, TextField, Tab, Tabs, Select, Button, MenuItem, InputLabel, FormLabel, FormControl, FormControlLabel } from '@mui/material';
+import { Stack, Container, Typography, TextField, Chip, Tabs, Select, Button, MenuItem, InputLabel, FormLabel, FormControl, FormControlLabel } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -15,40 +15,40 @@ import thematicBigScreenListData from "../../data/stub/thematicBigScreenListData
 export default function Home({ data }) {
     const [multiSelectValue, setMultiSelectValue] = React.useState([])
     const selectRef = React.useRef(null);
-    const selectedDepartment = (event)=>{
+    const selectedDepartment = (event) => {
         const {
             target: { value },
         } = event;
         setMultiSelectValue(
-          typeof value === 'string' ? value.split(',') : value,
+            typeof value === 'string' ? value.split(',') : value,
         );
     }
-    const deleteDepart = (event,value)=>{
+    const deleteDepart = (event, value) => {
         event.stopPropagation()
-        const _val = multiSelectValue.filter(item=>item!==value)
+        const _val = multiSelectValue.filter(item => item !== value)
         setMultiSelectValue(_val)
     }
     const handleInputFocus = () => {
         selectRef.current.blur(); // set focus back to parent container
     };
-    const [keywords,setKeywords] =  React.useState('')
-    const handleChangeKeywords= (event)=>{
+    const [keywords, setKeywords] = React.useState('')
+    const handleChangeKeywords = (event) => {
         setKeywords(event.target.value);
     }
-    const [field,setField] =  React.useState('')
-    const handleChangeField= (event)=>{
+    const [field, setField] = React.useState('')
+    const handleChangeField = (event) => {
         setField(event.target.value);
     }
-    const [classic,setClassic] =  React.useState('')
-    const handleChangeClassic= (event)=>{
+    const [classic, setClassic] = React.useState('')
+    const handleChangeClassic = (event) => {
         setClassic(event.target.value);
     }
-    const [number,setNumber] =  React.useState('')
-    const handleChangeNumber= (event)=>{
+    const [number, setNumber] = React.useState('')
+    const handleChangeNumber = (event) => {
         setNumber(event.target.value);
     }
-    const [topic,setTopic] =  React.useState('')
-    const handleChangeTopic= (event)=>{
+    const [topic, setTopic] = React.useState('')
+    const handleChangeTopic = (event) => {
         setTopic(event.target.value);
     }
     return (
@@ -108,7 +108,7 @@ export default function Home({ data }) {
                                                     }}
                                                     endAdornment={
                                                         <InputAdornment position="end">
-                                                            <IconButton onClick={()=>setKeywords('')}>
+                                                            <IconButton onClick={() => setKeywords('')}>
                                                                 <HighlightOffIcon />
                                                             </IconButton>
 
@@ -226,23 +226,24 @@ export default function Home({ data }) {
                                                     size="small"
                                                     onFocus={handleInputFocus}
                                                     renderValue={(selected) => (
-                                                      <Box sx={{
-                                                          '& div': { height: '100%',backgroundColor:'#fff',borderRadius:0, },
-                                                          display: 'flex',gap:0.5 ,'& button': {
-                                                              padding:0
-                                                          }}}
+                                                        <Box sx={{
+                                                            '& div': { height: '100%', backgroundColor: '#fff', borderRadius: 0, },
+                                                            display: 'flex', gap: 0.5, '& button': {
+                                                                padding: 0
+                                                            }
+                                                        }}
                                                         >
-                                                          {selected.map((value,index) => (
-                                                            <Box  key={index} display="flex" alignItems="center">
-                                                                <Chip label={value} onMouseDown={(event) => {
-                                                                    event.stopPropagation(); // prevent event from propagating to parent
-                                                                }}/>
-                                                                <IconButton size={'small'} onMouseDown={(event)=>deleteDepart(event,value)}>
-                                                                    <ClearIcon/>
-                                                                </IconButton>
-                                                            </Box>
-                                                          ))}
-                                                      </Box>
+                                                            {selected.map((value, index) => (
+                                                                <Box key={index} display="flex" alignItems="center">
+                                                                    <Chip label={value} onMouseDown={(event) => {
+                                                                        event.stopPropagation(); // prevent event from propagating to parent
+                                                                    }} />
+                                                                    <IconButton size={'small'} onMouseDown={(event) => deleteDepart(event, value)}>
+                                                                        <ClearIcon />
+                                                                    </IconButton>
+                                                                </Box>
+                                                            ))}
+                                                        </Box>
                                                     )}
                                                 >
                                                     <MenuItem value={'城管局'}>城管局</MenuItem>
@@ -263,8 +264,8 @@ export default function Home({ data }) {
                                         sx={{ width: '100%', marginLeft: 0 }}
                                         labelPlacement="start"
                                         control={<TextField
-                                          value={number}
-                                          onChange={handleChangeNumber}
+                                            value={number}
+                                            onChange={handleChangeNumber}
                                             sx={{ width: '100%', marginBottom: 1, '& fieldset': { border: 0 }, '& div': { backgroundColor: 'rgba(0,0,0,0.04)' }, '& div:before': { borderBottom: 'none' } }}
                                             size="small"
                                         />
@@ -281,8 +282,8 @@ export default function Home({ data }) {
                                         control={
                                             <FormControl sx={{ width: '100%', }}>
                                                 <Select
-                                                  value={topic}
-                                                  onChange={handleChangeTopic}
+                                                    value={topic}
+                                                    onChange={handleChangeTopic}
                                                     sx={{
                                                         width: '100%',
                                                         '& fieldset': { border: 0 },

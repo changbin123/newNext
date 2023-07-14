@@ -18,12 +18,12 @@ export default function Home({ data }) {
     const [area, setArea] = React.useState('');
     const [appealChannel, setAppealChannel] = React.useState('');
     const [filterMethod, setFilterMethod] = React.useState('');
-    const [creatTime0, setCreatTime0] = React.useState(      dayjs(new Date())
+    const [creatTime0, setCreatTime0] = React.useState(dayjs(new Date())
     );
-    const [creatTime1, setCreatTime1] = React.useState(      dayjs(new Date())
+    const [creatTime1, setCreatTime1] = React.useState(dayjs(new Date())
     );
     const [status, setStatus] = React.useState(
-      ''
+        ''
     );
     const handleChangeClaimant = (event) => {
         setClaimant(event.target.value);
@@ -34,10 +34,10 @@ export default function Home({ data }) {
     const handleChangeAppealChannel = (event) => {
         setAppealChannel(event.target.value);
     };
-    const handleChangeFilterMethod = (event)=>{
+    const handleChangeFilterMethod = (event) => {
         setFilterMethod(event.target.value);
     };
-    const handleChangeCreatTime0 = (event)=>{
+    const handleChangeCreatTime0 = (event) => {
         setCreatTime0(event.target.value);
     };
     const handleChangeCreatTime1 = (event) => {
@@ -46,13 +46,13 @@ export default function Home({ data }) {
     const handleChangeStatus = (event) => {
         setStatus(event.target.value);
     };
-    const reset = ()=>{
+    const reset = () => {
         setClaimant('')
         setArea('')
         setAppealChannel('')
         setFilterMethod('')
-        setCreatTime0( dayjs(new Date()))
-        setCreatTime1( dayjs(new Date()))
+        setCreatTime0(dayjs(new Date()))
+        setCreatTime1(dayjs(new Date()))
         setStatus('')
     }
     const [value, setValue] = React.useState(0);
@@ -105,9 +105,9 @@ export default function Home({ data }) {
                                         }
                                         labelPlacement="start"
                                         control={<TextField
-                                          value={claimant}
-                                          onChange={handleChangeClaimant}
-                                          sx={{ width: '100%', marginBottom: 1, '& fieldset': { border: 0 }, '& div': { backgroundColor: 'rgba(0,0,0,0.04)' }, '& div:before': { borderBottom: 'none' } }} label="请输入诉求人姓名" size="small" />
+                                            value={claimant}
+                                            onChange={handleChangeClaimant}
+                                            sx={{ width: '100%', marginBottom: 1, '& fieldset': { border: 0 }, '& div': { backgroundColor: 'rgba(0,0,0,0.04)' }, '& div:before': { borderBottom: 'none' } }} label="请输入诉求人姓名" size="small" />
                                         }
                                     />
                                 </Grid>
@@ -119,10 +119,10 @@ export default function Home({ data }) {
                                         }
                                         labelPlacement="start"
                                         control={<TextField
-                                          value={area}
-                                          onChange={handleChangeArea}
+                                            value={area}
+                                            onChange={handleChangeArea}
 
-                                          sx={{ width: '100%', marginBottom: 1, '& fieldset': { border: 0 }, '& div': { backgroundColor: 'rgba(0,0,0,0.04)' }, '& div:before': { borderBottom: 'none' } }} label="请输入区域名称" size="small" />
+                                            sx={{ width: '100%', marginBottom: 1, '& fieldset': { border: 0 }, '& div': { backgroundColor: 'rgba(0,0,0,0.04)' }, '& div:before': { borderBottom: 'none' } }} label="请输入区域名称" size="small" />
                                         }
                                     />
                                 </Grid>
@@ -138,9 +138,9 @@ export default function Home({ data }) {
                                             <FormControl sx={{ width: '100%' }}>
                                                 <Select
                                                     value={appealChannel}
-                                                        onChange={handleChangeAppealChannel}
+                                                    onChange={handleChangeAppealChannel}
 
-                                                        sx={{
+                                                    sx={{
                                                         width: '100%',
                                                         marginBottom: 1,
                                                         '& fieldset': { border: 0 },
@@ -173,9 +173,9 @@ export default function Home({ data }) {
                                             <FormControl sx={{ width: '100%' }}>
                                                 <Select
                                                     value={filterMethod}
-                                                        onChange={handleChangeFilterMethod}
+                                                    onChange={handleChangeFilterMethod}
 
-                                                        sx={{
+                                                    sx={{
                                                         width: '100%',
                                                         marginTop: 1,
                                                         '& fieldset': { border: 0 },
@@ -214,17 +214,17 @@ export default function Home({ data }) {
                                                         <Stack direction="row" spacing={1} alignItems={"center"}>
 
                                                             <DatePicker
-                                                              sx={{ '&>div': { padding: '0px' }, '&>div>button': { padding: '0px', margin: 0 }, '& input': { padding: '0px', height: '40px', fontSize: '14px' }, '& fieldset': { border: 0 } }}
-                                                              label="开始日期"
-                                                              value={creatTime0}
-                                                              onChange={handleChangeCreatTime0}
+                                                                sx={{ '&>div': { padding: '0px' }, '&>div>button': { padding: '0px', margin: 0 }, '& input': { padding: '0px', height: '40px', fontSize: '14px' }, '& fieldset': { border: 0 } }}
+                                                                label="开始日期"
+                                                                value={creatTime0}
+                                                                onChange={handleChangeCreatTime0}
 
                                                             />
                                                             <DatePicker
-                                                              sx={{ '&>div': { padding: '0px' }, '& div>button': { padding: '0px', margin: 0 }, '& input': { padding: '0px', height: '40px', fontSize: '14px' }, '& fieldset': { border: 0 } }}
-                                                              label="结束日期"
-                                                              value={creatTime1}
-                                                              onChange={handleChangeCreatTime1}
+                                                                sx={{ '&>div': { padding: '0px' }, '& div>button': { padding: '0px', margin: 0 }, '& input': { padding: '0px', height: '40px', fontSize: '14px' }, '& fieldset': { border: 0 } }}
+                                                                label="结束日期"
+                                                                value={creatTime1}
+                                                                onChange={handleChangeCreatTime1}
 
                                                             />
                                                         </Stack>
@@ -247,9 +247,9 @@ export default function Home({ data }) {
                                             <FormControl sx={{ width: '100%', }}>
                                                 <Select
                                                     value={status}
-                                                        onChange={handleChangeStatus}
+                                                    onChange={handleChangeStatus}
 
-                                                        sx={{
+                                                    sx={{
                                                         width: '100%',
                                                         marginTop: 1,
                                                         '& fieldset': { border: 0 },

@@ -10,10 +10,11 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import { CSVLink, CSVDownload } from "react-csv";
 export default function EfficacyAnalysisList({ data }) {
     const [newRows, setRows] = React.useState(data);
-    const chipStyle = {
-        borderRadius: 5,
+    const handleLinkClick = () => {
+        window.location.href = ''; // 设置要跳转的链接地址
     };
     const columns = [
         {
@@ -23,12 +24,12 @@ export default function EfficacyAnalysisList({ data }) {
             width: 180,
             renderCell: (params) => {
                 return (
-                    <Stack direction="row" spacing={1} sx={{display: 'flex', alignItems: 'center'}}>
-                    <span>{params.row.street}</span>
-                    <IconButton  sx={{marginLeft:0}}>
-                        <ContentCopyIcon  sx={{marginLeft:'-10px',width:'12px'}}/>
-                    </IconButton>
-                </Stack>
+                    <Stack direction="row" spacing={1} sx={{ display: 'flex', alignItems: 'center' }}>
+                        <span>{params.row.street}</span>
+                        <IconButton sx={{ marginLeft: 0 }}>
+                            <ContentCopyIcon sx={{ marginLeft: '-10px', width: '12px' }} />
+                        </IconButton>
+                    </Stack>
                 );
             },
         },
@@ -38,12 +39,12 @@ export default function EfficacyAnalysisList({ data }) {
             width: 180,
             renderCell: (params) => {
                 return (
-                    <Stack direction="row" spacing={1} sx={{display: 'flex', alignItems: 'center'}}>
-                    <span>{params.row.averageSatisfaction}</span>
-                    <IconButton  sx={{marginLeft:0}}>
-                        <ContentCopyIcon  sx={{marginLeft:'-10px',width:'12px'}}/>
-                    </IconButton>
-                </Stack>
+                    <Stack direction="row" spacing={1} sx={{ display: 'flex', alignItems: 'center' }}>
+                        <span>{params.row.averageSatisfaction}</span>
+                        <IconButton sx={{ marginLeft: 0 }}>
+                            <ContentCopyIcon sx={{ marginLeft: '-10px', width: '12px' }} />
+                        </IconButton>
+                    </Stack>
                 );
             },
         },
@@ -54,12 +55,12 @@ export default function EfficacyAnalysisList({ data }) {
             editable: true,
             renderCell: (params) => {
                 return (
-                    <Stack direction="row" spacing={1} sx={{display: 'flex', alignItems: 'center'}}>
-                    <span>{params.row.averageProcessingTime}</span>
-                    <IconButton  sx={{marginLeft:0}}>
-                        <ContentCopyIcon  sx={{marginLeft:'-10px',width:'12px'}}/>
-                    </IconButton>
-                </Stack>
+                    <Stack direction="row" spacing={1} sx={{ display: 'flex', alignItems: 'center' }}>
+                        <span>{params.row.averageProcessingTime}</span>
+                        <IconButton sx={{ marginLeft: 0 }}>
+                            <ContentCopyIcon sx={{ marginLeft: '-10px', width: '12px' }} />
+                        </IconButton>
+                    </Stack>
                 );
             },
         },
@@ -83,6 +84,7 @@ export default function EfficacyAnalysisList({ data }) {
                         <Button
                             variant="text"
                             color="primary"
+                            onClick={handleLinkClick}
                         >
                             查看
                         </Button>
@@ -92,17 +94,25 @@ export default function EfficacyAnalysisList({ data }) {
         },
     ];
 
+    const headers = [
+        { label: "镇街", key: "street" },
+        { label: "平均满意度(%)", key: "averageSatisfaction" },
+        { label: "平均处理时长(天)", key: "averageProcessingTime" },
+        { label: "平均推诿数(次)", key: "averageNumberPrevarications" },
+        { label: "总分(次)", key: "totalScore" },
+    ];
+
     return (
         <>
             <Box
-                sx={{ pb: 1, display: "flex", justifyContent: "space-between" }}
+                sx={{ pb: 1, pt: 1, display: "flex", justifyContent: "space-between" }}
             >
                 <Stack direction="row" spacing={1} alignItems={"center"}>
                     <Button variant="contained">+ 新建</Button>
                     <Button variant="outlined">批量导入</Button>
                 </Stack>
                 <Button startIcon={<SaveAltIcon />} variant="outlined">
-                    下载
+                    <CSVLink data={newRows} headers={headers} >下载</CSVLink>
                 </Button>
             </Box>
             <Paper sx={{ mx: 1 }} elevation={0}>
@@ -119,7 +129,6 @@ export default function EfficacyAnalysisList({ data }) {
                     pageSizeOptions={[10]}
                     disableRowSelectionOnClick
                 />
-
             </Paper>
         </>
     );

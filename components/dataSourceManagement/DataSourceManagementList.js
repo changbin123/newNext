@@ -10,10 +10,14 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import { CSVLink, CSVDownload } from "react-csv";
 export default function DataSourceManagementList({ data }) {
     const [newRows, setRows] = React.useState(data);
     const chipStyle = {
         borderRadius: 5,
+    };
+    const handleLinkClick = () => {
+        window.location.href = ''; // 设置要跳转的链接地址
     };
     const columns = [
         {
@@ -23,7 +27,7 @@ export default function DataSourceManagementList({ data }) {
             width: 200,
             renderCell: (params) => {
                 return (
-                    <Chip label={params.row.dataSource}  style={chipStyle} />
+                    <Chip label={params.row.dataSource} style={chipStyle} />
                 );
             },
         },
@@ -44,7 +48,7 @@ export default function DataSourceManagementList({ data }) {
             width: 150,
             renderCell: (params) => {
                 return (
-                    <Chip label={params.row.accessDepartment}  style={chipStyle} />
+                    <Chip label={params.row.accessDepartment} style={chipStyle} />
                 );
             },
         },
@@ -59,9 +63,9 @@ export default function DataSourceManagementList({ data }) {
             width: 100,
             renderCell: (params) => {
                 return (
-                    <Stack direction="row" spacing={1} sx={{display: 'flex', alignItems: 'center'}}>
-                        <FiberManualRecordIcon style={{ width:'0.7rem', color: params.row.status?'green':'red',marginRight:'5px' }}/>
-                        {params.row.status?'已启用':'未启用'}
+                    <Stack direction="row" spacing={1} sx={{ display: 'flex', alignItems: 'center' }}>
+                        <FiberManualRecordIcon style={{ width: '0.7rem', color: params.row.status ? 'green' : 'red', marginRight: '5px' }} />
+                        {params.row.status ? '已启用' : '未启用'}
                     </Stack>
                 );
             },
@@ -76,6 +80,7 @@ export default function DataSourceManagementList({ data }) {
                         <Button
                             variant="text"
                             color="primary"
+                            onClick={handleLinkClick}
                         >
                             查看
                         </Button>
@@ -84,6 +89,20 @@ export default function DataSourceManagementList({ data }) {
             },
         },
     ];
+    const headers = [
+        { label: "数据来源", key: "dataSource" },
+        { label: "纳入数据量", key: "inclusionAmount" },
+        { label: "更新时间", key: "updataTime" },
+        { label: "接入部门", key: "accessDepartment" },
+        { label: "时间范围", key: "timeRange" },
+        { label: "状态", key: "status" },
+    ];
+
+    const newObj = newRows.map((item) => {
+        return { ...item, status: item.status ? "开启" : "未开启" };
+    });
+
+
 
     return (
         <>
@@ -95,7 +114,7 @@ export default function DataSourceManagementList({ data }) {
                     <Button variant="outlined">批量导入</Button>
                 </Stack>
                 <Button startIcon={<SaveAltIcon />} variant="outlined">
-                    下载
+                    <CSVLink data={newObj} headers={headers} filename={"数据源.csv"}>下载</CSVLink>
                 </Button>
             </Box>
             <Paper sx={{ mx: 1 }} elevation={0}>

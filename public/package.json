@@ -1,0 +1,37 @@
+{
+  "name": "data-analysis-ui",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@cyntler/react-doc-viewer": "^1.12.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.13.7",
+    "@mui/material": "^5.11.11",
+    "@mui/x-data-grid": "^6.9.2",
+    "@mui/x-date-pickers": "^6.9.2",
+    "dayjs": "^1.11.9",
+    "dotenv": "^16.0.3",
+    "echarts": "^5.4.1",
+    "echarts-for-react": "^3.0.2",
+    "lodash": "^4.17.21",
+    "mui": "^0.0.1",
+    "next": "13.2.3",
+    "next-connect": "^0.13.0",
+    "npx": "^10.2.2",
+    "pg-promise": "^11.3.0",
+    "react": "18.2.0",
+    "react-csv": "^2.2.2",
+    "react-dom": "18.2.0",
+    "react-scripts": "^5.0.1"
+  },
+  "devDependencies": {
+    "eslint": "8.35.0",
+    "eslint-config-next": "13.2.3"
+  }
+}

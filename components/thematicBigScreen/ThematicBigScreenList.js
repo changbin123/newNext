@@ -24,10 +24,10 @@ export default function ThematicBigScreenList({ data }) {
             width: 200,
             renderCell: (params) => {
                 return (
-                    <Stack direction="row" spacing={1} sx={{display: 'flex', alignItems: 'center'}}>
+                    <Stack direction="row" spacing={1} sx={{ display: 'flex', alignItems: 'center' }}>
                         <span>{params.row.topicName}</span>
-                        <IconButton  sx={{marginLeft:0}}>
-                            <ContentCopyIcon  sx={{marginLeft:'-10px',width:'12px'}}/>
+                        <IconButton sx={{ marginLeft: 0 }}>
+                            <ContentCopyIcon sx={{ marginLeft: '-10px', width: '12px' }} />
                         </IconButton>
                     </Stack>
                 );
@@ -50,9 +50,9 @@ export default function ThematicBigScreenList({ data }) {
             width: 200,
             renderCell: (params) => {
                 return (
-                    <Stack direction="row" spacing={1} sx={{display: 'flex', alignItems: 'center'}}>
-                        <FiberManualRecordIcon style={{ width:'0.7rem', color: params.row.status?'green':'red',marginRight:'5px' }}/>
-                        {params.row.status?'已启用':'未启用'}
+                    <Stack direction="row" spacing={1} sx={{ display: 'flex', alignItems: 'center' }}>
+                        <FiberManualRecordIcon style={{ width: '0.7rem', color: params.row.status ? 'green' : 'red', marginRight: '5px' }} />
+                        {params.row.status ? '已启用' : '未启用'}
                     </Stack>
                 );
             },
@@ -81,7 +81,15 @@ export default function ThematicBigScreenList({ data }) {
             },
         },
     ];
-
+    const headers = [
+        { label: "专题名称", key: "topicName" },
+        { label: "主体部门", key: "mainSector" },
+        { label: "创建时间", key: "createTime" },
+        { label: "状态", key: "status" },
+    ];
+    const newObj = newRows.map((item) => {
+        return { ...item, status: item.status ? "已启用" : "未启用" };
+    });
     return (
         <>
             <Box
@@ -91,11 +99,11 @@ export default function ThematicBigScreenList({ data }) {
                     <Button variant="contained">+ 新建</Button>
                     <Button variant="outlined">批量导入</Button>
                 </Stack>
-              <CSVLink data={newRows}  filename={"专题大屏.csv"}>
-                <Button variant="outlined">
-                  <SaveAltIcon />下载
-                </Button>
-              </CSVLink>
+                <CSVLink data={newObj} headers={headers} filename={"专题大屏.csv"}>
+                    <Button variant="outlined">
+                        <SaveAltIcon />下载
+                    </Button>
+                </CSVLink>
             </Box>
             <Paper sx={{ mx: 1 }} elevation={0}>
                 <DataGrid
